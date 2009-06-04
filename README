@@ -1,0 +1,143 @@
+lcOpenInviterPlugin 
+===================
+
+The `lcOpenInviterPlugin` is a symfony plugin that allows users to grab their contacts from different __e-mail providers (gmail, hotmail, yahoo ...)__ and __social sites (facebook, hi5, flickr ...)__ then send them e-mails and messages.
+
+__The total of available providers and social sites is 86__
+
+This plugin is developed by [LetsCod](http://www.letscod.com/ "Your web projects experts : Symfony, PHP, MySQL, PostgreSQL, jQuery").
+
+Server Requirements
+-------------------
+  * CURL extension for php
+  * DOM Element support for php
+
+_If you're on windows OS, you should create an empty folder "tmp" for cookie storage. (for example, if you're using wamp, create the folder C:\tmp)_
+
+Installation
+------------
+
+  * Install the plugin
+
+        $ symfony plugin:install --stability=beta lcOpenInviterPlugin
+
+  * Publish the plugin assets (css and js):
+
+        $ symfony plugin:publish-assets
+
+  * Clear you cache
+
+        $ symfony cc
+
+  
+Configuring your plugin
+-----------------------
+
+  * Configure the plugin by running the plugin task:
+
+        $ symfony open-inviter:install
+
+this task checks your sever configuration (php version, curl
+installation, DOM Element installation, cookie path ...)
+if everything is okay, a log file will be written
+        
+        
+  * Enable the module and helper in your application `settings.yml` 
+
+            [yml]
+            all:
+              .settings:
+                enabled_modules:      [openInviter]
+                standard_helpers:     [openInviter]
+                
+
+  * Configure the e-mail text and providers in your application `app.yml`
+
+            [yml]
+            all:
+              lcOpenInviter:
+                wish-list:
+                  providers: ["hotmail","gmail", "aol", "facebook", "flickr", "hi5","indiatimes", "operamail", "tagged", "yahoo"]
+                message:
+                  subject: "is inviting you to join letscod developers"
+                  body: "Check our recruitment page"
+                  footer: "LetsCod"
+
+The user wishlist
+-----------------
+                  
+  * If the wish list is not set, a default wish list of "Gmail, hotmail and yahoo" is provided
+
+  * If the wishlist is set to `all`, it will return all the available providers  
+
+            [yml]
+            all:
+              lcOpenInviter:
+                wish-list:
+                  providers: [all]
+                                    
+Displaying the form
+-------------------
+     
+            [php]
+            <? 
+              echo link_to("invite", "openInviterHome"); 
+                
+Available e-mail providers
+--------------------------
+  * AOL
+  * Gmail
+  * Hotmail
+  * Indiatimes
+  * Operamail
+  * Yahoo Mail
+  * Doramail
+  * Fastmail
+  * inbox
+  * mail_com
+  * __and many more...__
+  
+
+Available social-sites
+----------------------
+  * Facebook
+  * Flickr
+  * hi5
+  * Tagged
+  * Twitter
+  * Linked in
+  * Myspace
+  * Friendfeed
+  * Faces
+  * Skyrock
+  * Friendster
+  * Xanga
+  * __and many more...__
+
+The Auto-updates
+----------------
+  As each service and provider updates their url of getting contacts for their own security reasons, a task has been created
+  to do update the plugin's classes.
+  
+        $ symfony open-inviter:auto-update
+  
+  _`You can run this task manually to get the updates, but the best way would be to make a cronjob that runs this task twice a day 
+   (every 12 hours) for the perfect balance between server load and autoupdate frequency.`_  
+  
+
+I use it
+--------
+If you do like the plugin, and think it helps the community, do not hesitate to click __I use it__ , so it could be more trusted
+and spreaded fast.
+                  
+Feedback
+--------
+Feel free to send your feedbacks, bug reports or suggestions to __Elie Andraos at symfony-plugins@letscod.com__  
+
+             
+TODO
+----
+
+  * i18n forms translation
+  * Enable the plugin user to have his own username and private key provided by the openInviter source project
+  * ajax form

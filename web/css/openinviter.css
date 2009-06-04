@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+#open-inviter-login
+{
+  width:450px;
+}
+
+#open-inviter-login input
+{
+	padding:2px;
+}
+
+#open-inviter-contacts-list
+{
+  height:295px;
+  overflow:auto;
+  width:550px;
+  margin-bottom:20px;
+}
+

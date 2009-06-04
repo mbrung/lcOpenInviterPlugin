@@ -1,0 +1,6 @@
+autoload:
+  lcOpenInviterPlugin_lib:
+    name:           lcOpenInviterPlugin lib
+    path:           %SF_PLUGINS_DIR%/lcOpenInviterPlugin/lib
+    recursive:      on
+    exclude:        [extern]
