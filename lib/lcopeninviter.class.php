@@ -10,47 +10,46 @@ include_once dirname(__FILE__)."/extern/openInviter/openinviter.php";
  
 class LcOpenInviter extends OpenInviter
 {
-
-	  public  $pluginTypes  = array('email'=>'Email Providers','social'=>'Social Networks');
-    private $ignoredFiles = array('default.php'=>'','index.php'=>'');
+    public  $pluginTypes  = array('email'=>'Email Providers','social'=>'Social Networks');
+    public $pluginSuffix = '.plg';
+    private $ignoredFiles = array('default.php'=>'','index.php'=>'', '_base.php' =>'', '_hosted.plg.php' => '' );
     private $version      = '1.7.2';
+    private $basePath;
     
-    //my added variables
-    //private $pluginsDir   =  dirname(__FILE__)."/extern/openInviter/plugins";
-    //private $confDir      =  dirname(__FILE__)."/extern/openInviter/conf";
     
-	  public function __construct()
-		{
-		  parent::__construct();
-		}
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->basePath = dirname(__FILE__);
+    }
 
 		
-		/****************************************
-		 *    Error handling functions thrown   *
-		 *    in GetContactsForm.class.php      *
-		 * **************************************/
-		
-		// overriding the function startPlugin		
-    public function startPlugin($plugin_name)
+    /****************************************
+     *    Error handling functions thrown   *
+     *    in GetContactsForm.class.php      *
+     * **************************************/
+    // overriding the function startPlugin
+    public function startPlugin($plugin_name, $getPlugins=false)
     {
-    	$plugins_dir = dirname(__FILE__)."/extern/openInviter/plugins";
-      $conf_dir    = dirname(__FILE__)."/extern/openInviter/conf";
-      
+    	$plugins_dir = $this->basePath."/extern/openInviter/plugins";
+        $conf_dir    = $this->basePath."/extern/openInviter/conf";
+
       //error thrown in GetContactsForm.class.php
-      if (!file_exists(dirname(__FILE__)."/installation-complete.dat"))
+      if (!file_exists($this->basePath."/installation-complete.dat")) {
         $this->internalError = 1;
-      elseif(!self::checkMessageConfig())
+      } elseif(!self::checkMessageConfig()) {
         $this->internalError = 2;
-      elseif (file_exists($plugins_dir."/{$plugin_name}.php"))
+      } elseif (file_exists($plugins_dir."/{$plugin_name}".$this->pluginSuffix.".php"))
       {
         $ok=true;
-        if (!class_exists($plugin_name)) 
-          include_once(dirname(__FILE__)."/plugins/{$plugin_name}.php");
+        if (!class_exists($plugin_name))
+          include_once($plugins_dir."/{$plugin_name}".$this->pluginSuffix.".php");
+        
         $this->plugin=new $plugin_name();
         $this->plugin->settings=$this->settings;
         $this->plugin->base_version=$this->version;
-        $this->plugin->base_path = dirname(__FILE__)."/extern/openInviter";
-        
+        $this->plugin->base_path = $this->basePath."/extern/openInviter";
         if (file_exists($conf_dir."/{$plugin_name}.conf")) 
         { 
           include($conf_dir."/{$plugin_name}.conf");
@@ -59,8 +58,9 @@ class LcOpenInviter extends OpenInviter
           if (!empty($maxMessages)) $this->plugin->maxMessages=$maxMessages; else $this->plugin->maxMessages=10;
         }
       }
-    else
+    else {
       $this->internalError="Invalid service provider";
+    }
     }
 	
    
@@ -97,26 +97,23 @@ class LcOpenInviter extends OpenInviter
 	      }
 	    return true;
    }
-
-   
    
      /***********************************************
      *    overriding the getPlugins()  function     *
      * **********************************************/
-   
     public function getPlugins($update=false)
     {
 
 	    $plugins=array();
 	    $array_file=array();
-	    $plugins_dir = dirname(__FILE__)."/extern/openInviter/plugins";
-	    $conf_dir    = dirname(__FILE__)."/extern/openInviter/conf";
-
+	    $plugins_dir = $this->basePath."/extern/openInviter/plugins";
+	    $conf_dir    = $this->basePath."/extern/openInviter/conf";
+      
 	    // get contacts form
-	    if(!$update)
+	    if(!$update) {
         $array_file = self::getUserWishList(); 
-      //running updates task  
-      else
+      //running updates task or the install task (first time)
+        } else
         $array_file = self::readAll();
         
 	    if (count($array_file)>0) 
@@ -125,7 +122,7 @@ class LcOpenInviter extends OpenInviter
 	      foreach($array_file as $key=>$file)
 	      {
 	        $val=str_replace("{$plugins_dir}/",'',$file);
-	        $plugin_key=str_replace('.php','',$val);
+	        $plugin_key=str_replace( $this->pluginSuffix.'.php','',$val);
 	           
 	        if (file_exists($conf_dir."/{$plugin_key}.conf"))
 	        {
@@ -160,7 +157,36 @@ class LcOpenInviter extends OpenInviter
 	      return false;
     }
     
-   
+     /***********************************************
+     *    overriding the getPlugins()  function     *
+     * **********************************************/
+    
+    public function getMyContacts()
+    {
+      $contacts=$this->plugin->getMyContacts();
+      //if ($contacts!==false) $this->statsRecordImport(count($contacts));
+      return $contacts;
+    } 
+    
+    public function sendMessage($session_id,$message,$contacts)
+    {
+	    $this->plugin->init($session_id);
+	    $internal=$this->getInternalError();
+	    if ($internal) return false;
+	    if (!method_exists($this->plugin,'sendMessage'))
+	    { 
+	    	//$this->statsRecordMessages('E',count($contacts));
+	    	return -1; 
+	    }
+	    else 
+	    {
+	      $sent=$this->plugin->sendMessage($session_id,$message,$contacts);
+	      //if ($sent!==false) $this->statsRecordMessages('I',count($contacts));
+	      return $sent;
+	    }
+    }
+    
+    
     // the default providers returned 
     //if nothing is set in the app.yml
     public function getDefaultWishList()
@@ -175,7 +201,7 @@ class LcOpenInviter extends OpenInviter
     */
     public function getUserWishList()
     {
-    	$plugins_dir = dirname(__FILE__)."/extern/openInviter/plugins";
+    	$plugins_dir = $this->basePath."/extern/openInviter/plugins";
      	$wishlist = sfConfig::get("app_lcOpenInviter_wish-list");
      	$temp = array();
      	
@@ -183,7 +209,7 @@ class LcOpenInviter extends OpenInviter
      	{
      	  $array_file =  self::getDefaultWishList();
      	  foreach($array_file as $key => $val)
-     	    $temp[$plugins_dir."/".$key.".php"] = $plugins_dir."/".$key.".php";
+     	    $temp[$plugins_dir."/".$key.".php"] = $plugins_dir."/".$key.$this->pluginSuffix.".php";
      	  return $temp;    	  
      	}
      	else
@@ -195,8 +221,8 @@ class LcOpenInviter extends OpenInviter
      		{
      			 $plugins_dir_list = self::readAll();
      			 foreach($wishlist['providers'] as $key => $val)
-     			   if(!isset($this->ignoredFiles[$val.".php"]) && in_array($plugins_dir."/".$val.".php", array_keys($plugins_dir_list)))
-     			      $temp[$plugins_dir."/".$val.".php"] = $plugins_dir."/".$val.".php";
+     			   if(!isset($this->ignoredFiles[$val.".php"]) && in_array($plugins_dir."/".$val.$this->pluginSuffix.".php", array_keys($plugins_dir_list)))
+     			      $temp[$plugins_dir."/".$val.".php"] = $plugins_dir."/".$val.$this->pluginSuffix.".php";
      			 return $temp;
      		}  
      	}	
@@ -208,7 +234,7 @@ class LcOpenInviter extends OpenInviter
      */
      public function readAll()
      {
-     	 $plugins_dir = dirname(__FILE__)."/extern/openInviter/plugins";
+     	 $plugins_dir = $this->basePath."/extern/openInviter/plugins";
      	 $array_file=array();
      	 
      	 $temp=glob("{$plugins_dir}/*.php");

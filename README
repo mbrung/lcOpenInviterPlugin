@@ -3,7 +3,7 @@ lcOpenInviterPlugin
 
 The `lcOpenInviterPlugin` is a symfony plugin that allows users to grab their contacts from different __e-mail providers (gmail, hotmail, yahoo ...)__ and __social sites (facebook, hi5, flickr ...)__ then send them e-mails and messages.
 
-__The total of available providers and social sites is 86__
+__The total of available providers and social sites is more than 86__
 
 This plugin is developed by [LetsCod](http://www.letscod.com/ "Your web projects experts : Symfony, PHP, MySQL, PostgreSQL, jQuery").
 
@@ -13,6 +13,12 @@ Server Requirements
   * DOM Element support for php
 
 _If you're on windows OS, you should create an empty folder "tmp" for cookie storage. (for example, if you're using wamp, create the folder C:\tmp)_
+
+Plugin Requirements
+-------------------
+Get a username and private key (both required for the installation task) by signing up in [www.openinviter.com](http://www.openinviter.com/ "Import contacts").
+
+It's quick and easy.
 
 Installation
 ------------
@@ -35,11 +41,18 @@ Configuring your plugin
 
   * Configure the plugin by running the plugin task:
 
-        $ symfony open-inviter:install
+        $ symfony open-inviter:install --username=your-username  --key=your-private-key
 
-this task checks your sever configuration (php version, curl
+  * example:
+  
+        $ symfony open-inviter:install --username=elieandraos  --key=ee7968edc9580e1578c6bd7ad54fad4a
+        
+        
+this task sets the username and private key you entered and checks your sever configuration (php version, curl
 installation, DOM Element installation, cookie path ...)
-if everything is okay, a log file will be written
+if everything is okay, a log file will be written.
+
+_make sure to enter the right username and key because it's not yet validated with openinviter servers_
         
         
   * Enable the module and helper in your application `settings.yml` 
@@ -137,7 +150,8 @@ Feel free to send your feedbacks, bug reports or suggestions to __Elie Andraos a
              
 TODO
 ----
-
+  * integrate the hosted solutions provided by openinviter for better performance and less load on the server
+  * integrate the stats: how many users have imported contacts, how many contacts were imported or how many messages were sent
   * i18n forms translation
-  * Enable the plugin user to have his own username and private key provided by the openInviter source project
+  * check if the username and key are valid in the installation-task
   * ajax form

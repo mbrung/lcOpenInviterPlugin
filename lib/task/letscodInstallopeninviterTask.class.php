@@ -16,10 +16,10 @@ class letscodInstallopeninviterTask extends sfBaseTask
   {
 
     $this->addOptions(array(  
-      //new sfCommandOption('username', null, sfCommandOption::PARAMETER_REQUIRED, 'The username provided by openiviter.com',$this->username),
-      //new sfCommandOption('api_key',  null, sfCommandOption::PARAMETER_REQUIRED, 'The api key provided by openiviter.com', $this->api_key)
-    ));
-
+      new sfCommandOption('username', null, sfCommandOption::PARAMETER_REQUIRED, 'The username provided by openiviter.com'),
+      new sfCommandOption('key',  null, sfCommandOption::PARAMETER_REQUIRED, 'The private key provided by openiviter.com', null)
+    )); 
+    
     $this->namespace        = 'open-inviter';
     $this->name             = 'install';
     $this->briefDescription = 'This task configures and install open inviter';
@@ -33,13 +33,19 @@ EOF;
 
   protected function execute($arguments = array(), $options = array())
   {    
+    // check if the username and private key are set
+    if(!$options['username'] || !$options['key'])
+    {
+        throw new sfCommandException(sprintf('Missing Username and/or key. use help for more details.'));
+    }
+    
     // start log
     $this->logSection('start', 'This task make take a while, please be patient!');
     $this->logs .= 'start...This task make take a while, please be patient!'.$this->break;
-
+    
     $misConfiguration = false;
     // check username and private key
-    if(!letscodInstallopeninviterTask::checkUsernameAndPrivateKey($options['username'],$options['api_key'])) $misConfiguration = true;
+    if(!letscodInstallopeninviterTask::checkUsernameAndPrivateKey($options['username'],$options['key'])) $misConfiguration = true;
     // check php version
     if(!letscodInstallopeninviterTask::checkPHPVersion()) $misConfiguration = true;
     // check dom support
@@ -48,23 +54,24 @@ EOF;
     if(!letscodInstallopeninviterTask::checkTransportType()) $misConfiguration = true;
     // check Permissions
     if(!letscodInstallopeninviterTask::checkPermissions()) $misConfiguration = true;
-
+   
     include dirname(__FILE__)."/../extern/openInviter/openinviter.php";
     include dirname(__FILE__)."/../lcopeninviterpostinstall.class.php";
     
-    $inviter=new OpenInviter();
+    $inviter=new LcOpenInviter();
     $checker=new LcOpenInviterPostInstall();
-    
+ 
     $checker->settings=$inviter->settings;
 		$checker->service_user='postInstall';
 		$checker->service_pass='postInstall';
 		$checker->service='postInstall';
-		
+
 		// check OpenInviter software version
     letscodInstallopeninviterTask::checkOpenInviterVersion($checker,$inviter);
+
     // check plugins 
     letscodInstallopeninviterTask::checkPlugins($checker, $inviter);
-    
+
     //everything ok
     if(!$misConfiguration)
     {
@@ -77,30 +84,10 @@ EOF;
   
   public function checkUsernameAndPrivateKey($username, $api_key)
   {
-    	//self::rewrite_config("username", $username);
-    	//self::rewrite_config("private_key", $api_key);
+    	self::rewrite_config("username",    $username);
+    	self::rewrite_config("private_key", $api_key);
     	$this->logSection('Checking username and private key...OK!', 'Username or private key valid');
-      
-    //include dirname(__FILE__)."/../openInviter/letscodpostinstall.class.php";
-    //$checker=new LetscodPostInstall();
-    //$checker->remoteDebug();
-    //die();
     return true;
-
-  	/*
-  	if(empty($openinviter_settings['username']) OR empty($openinviter_settings['private_key']))
-  	{
-  		$this->logSection("Checking username and private key....NOT OK!", "Username or private key missing");
-  		$this->logs .= "Checking username and private key....NOT OK!".$this->seperator."Username or private key missing".$this->break;
-  	   return false;
-  	}
-  	else
-  	{
-  		$this->logSection("Checking username and private key....OK!", "Username or private key valid");
-  		$this->logs .= "Checking username and private key....OK!".$this->seperator."Username or private key valid".$this->break;
-  	   return true;
-  	}
-    */
   }
   
   public function checkPHPVersion()
@@ -234,7 +221,8 @@ EOF;
 	
 	public function checkPlugins($checker, $inviter)
 	{
-	  $plugins=$inviter->getPlugins();
+	  $plugins=$inviter->getPlugins(true);
+
 		foreach ($plugins as $type=>$dummy)
 		  foreach ($dummy as $plugin=>$details)
 		  {		  
@@ -286,16 +274,35 @@ EOF;
     $file_contents .= "\$openinviter_settings = array(\n";
     foreach($openinviter_settings as $k => $text)
     {
+      //boolean
+      if(is_bool($text)) {
+        if(!$text)
+          $data = "FALSE";
+        else
+          $data = "TRUE";
+      }
+      // integer
+      elseif(is_numeric($text)) 
+      { 
+        $data = (int)$text;
+      } 
+      //text
+      else
+        $data = '"'.$text.'"';
+
+      if($k == 'proxies')
+        $data = 'array()';
+        
     	if($k == $key)
         $file_contents .= '"'.$k.'" => "'.$value.'",';
     	else
-    	  $file_contents .= '"'.$k.'" => "'.$text.'",';
+    	  $file_contents .= '"'.$k.'" => '.$data.',';
     }
     $file_contents = substr($file_contents, 0, -1);
     $file_contents .= "\n);\n\n";
     $file_contents .= "?>";
-   
-		$return = file_put_contents(dirname(__FILE__)."/../openInviter/config.php",$file_contents, LOCK_EX);
+    
+		$return = file_put_contents(dirname(__FILE__)."/../extern/openInviter/config.php",$file_contents, LOCK_EX);
 	}
   
 }

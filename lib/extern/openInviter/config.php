@@ -1,7 +1,7 @@
 <?php
 
 $openinviter_settings = array(
-"username" => "joliegroup","private_key" => "ee7968edc9580e1578c6bd7ad54fad4a","cookie_path" => "/tmp","message_body" => "You are invited to www.joliegroup.net","message_subject" => " is inviting you to www.joliegroup.net","transport" => "curl","local_debug" => "on_error","remote_debug" => ""
+"username" => "elieandraos","private_key" => "e6822c8e33ceb87c945e8467e312a98a","cookie_path" => "/tmp","transport" => "curl","local_debug" => "on_error","remote_debug" => FALSE,"hosted" => FALSE,"proxies" => array(),"stats" => TRUE,"stats_user" => "","stats_password" => "","message_body" => "","message_subject" => "","plugins_cache_time" => 1800,"plugins_cache_file" => "oi_plugins.php","update_files" => TRUE
 );
 
 ?>

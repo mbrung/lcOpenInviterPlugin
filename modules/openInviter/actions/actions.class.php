@@ -30,11 +30,13 @@ class openInviterActions extends sfActions
     {
        $this->form = new GetContactsForm( array(), array("plugins" => $this->plugins ) );
        $params = $request->getParameter('openInviter');
+
        $this->form->bind($params);
        if ($this->form->isValid())
-       {   
+       {
           $this->inviter->startPlugin($params['provider']);
           $this->inviter->login($params['email'],$params['password']);
+               
           if ($this->inviter->showContacts()) 
             $get_contacts = $this->inviter->getMyContacts();
             
@@ -141,7 +143,4 @@ class openInviterActions extends sfActions
    {
    	  $this->sent = $this->getUser()->getAttribute('sent');
    }
-   
-   
-
 }
