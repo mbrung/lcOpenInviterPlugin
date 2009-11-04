@@ -94,14 +94,16 @@ EOF;
         include dirname(__FILE__)."/../lcopeninviter.class.php";
         $inviter = new lcOpenInviter();
         $plugins = $inviter->getPlugins(true);
-        $files_base['base']= array('openinviter'=>array('name'=>'openinviter','version'=>$inviter->getVersion()),'openinviter_base'=>array('name'=>'openinviter_base','version'=>$inviter->getVersion()));
         
+        $files_base['base']= array('openinviter'=>array('name'=>'openinviter','version'=>$inviter->getVersion()), '_base'=>array('name'=>'_base','version'=>$inviter->getVersion()));
         $update  = new LcOpenInviterAutoUpdate();
+        
         $update->settings=$inviter->settings;
         $update->plugins=(!empty($plugins)?array_merge($files_base,$plugins):$files_base);
         $update->service_user='updater';
         $update->service_pass='updater';
         $update->service='updater';
+        
         $update->makeUpdate();
     }
 

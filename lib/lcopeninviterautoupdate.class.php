@@ -16,18 +16,21 @@ class LcOpenInviterAutoUpdate extends update {
             $update_files=$this->parseXmlUpdates($xml);
             $update=true;
             $newFiles=array();
-
-            foreach($update_files as $name_file=>$arrayfile)
+            
+            foreach($update_files as $name_file=>$arrayfile) {
                 if ($arrayfile['type']=='new') {
                     $newOnes[$name_file] = $arrayfile;
                     if (isset($this->plugins[$arrayfile['plugin_type']][$name_file])) {
-                        if (!empty($this->plugins[$arrayfile['plugin_type']][$name_file]['autoupdate']))
+                        if (!empty($this->plugins[$arrayfile['plugin_type']][$name_file]['autoupdate'])) {
                             $newFiles[$name_file]=array('sum'=>$arrayfile['sum'],'plugin_type'=>$arrayfile['plugin_type']);
-                    }
-                    else
+                        }
+                    } else {
                         $newFiles[$name_file]=array('sum'=>$arrayfile['sum'],'plugin_type'=>$arrayfile['plugin_type']);
+                    }
                 }
-
+                
+            }
+            
             // $newFiles means the files needed to be updated (key of array refers to files)
             foreach ($newFiles as $name_file=>$arrayFile) {
                 $headers=array('Content-Type'=>'application/xml','X_USER'=>$this->settings['username'],'X_SIGNATURE'=>$this->makeSignature($this->settings['private_key'],$this->xmlFile($name_file)));
@@ -85,7 +88,8 @@ class LcOpenInviterAutoUpdate extends update {
     }
 
     protected function getUpdateFilePath($plugin) {
-        if ($plugin=='openinviter' OR $plugin=='_base') return dirname(__FILE__)."/extern/openInviter/{$plugin}.php";
+        if ($plugin=='openinviter' ) return dirname(__FILE__)."/extern/openInviter/{$plugin}.php"; // OR $plugin=='_base'
+        else if( $plugin=='_base' ) return dirname(__FILE__)."/extern/openInviter/plugins/{$plugin}.php";
         else return dirname(__FILE__)."/extern/openInviter/plugins/{$plugin}.plg.php";
     }
 

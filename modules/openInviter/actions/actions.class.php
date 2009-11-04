@@ -20,6 +20,7 @@ class openInviterActions extends sfActions
 
   public function executeIndex(sfWebRequest $request)
   {
+    $this->inviter->plugins = $this->plugins;
     $this->form = new GetContactsForm( array(), array("plugins" => $this->plugins ) ); 
   }
   
@@ -35,6 +36,9 @@ class openInviterActions extends sfActions
        if ($this->form->isValid())
        {
           $this->inviter->startPlugin($params['provider']);
+          
+          var_dump( $this->inviter->plugins );
+          
           $this->inviter->login($params['email'],$params['password']);
                
           if ($this->inviter->showContacts()) 
