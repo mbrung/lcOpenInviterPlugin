@@ -29,7 +29,7 @@ class openInviterActions extends sfActions
   {   
     if ($this->getRequest()->isMethod('post'))
     {
-       $this->form = new GetContactsForm( array(), array("plugins" => $this->plugins ) );
+       $this->form = new GetContactsForm( array(), array("plugins" => $this->plugins, "inviter" => $this->inviter ) );
        $params = $request->getParameter('openInviter');
 
        $this->form->bind($params);
@@ -37,7 +37,7 @@ class openInviterActions extends sfActions
        {
           $this->inviter->startPlugin($params['provider']);
           
-          var_dump( $this->inviter->plugins );
+          //var_dump( $this->inviter->plugins );die;
           
           $this->inviter->login($params['email'],$params['password']);
                

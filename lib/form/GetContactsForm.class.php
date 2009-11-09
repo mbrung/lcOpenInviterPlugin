@@ -64,7 +64,7 @@ class GetContactsForm extends sfForm
 		public function getProviders()
 		{
 			$output    = array();
-	    $providers =  $this->getOption('plugins');
+	        $providers =  $this->getOption('plugins');
 
 			foreach($providers as $type => $val)
 	      foreach($val as $key => $value)
@@ -90,7 +90,7 @@ class GetContactsForm extends sfForm
     {
     	if($values['email'] && $values['password'])
     	{ 
-	      $inviter = new LcOpenInviter();
+	      $inviter = $this->getOption('inviter');
 	      
 	      $inviter->startPlugin($values['provider']);
 	      $internal = $inviter->getInternalError();
@@ -101,8 +101,10 @@ class GetContactsForm extends sfForm
 	        throw new sfValidatorError($validator, 'You have to define your message before using openInviter');
 
        if(!$inviter->checkLoginCredentials($values['email']))
+       {
 	       throw new sfValidatorError($validator, $inviter->getInternalError());
-	     
+       }
+        
 	     if (!$inviter->login($values['email'],$values['password']))
 	        throw new sfValidatorError($validator, 'Login failed. Please check the email and password you have provided and try again later');
 	      elseif (false===$contacts=$inviter->getMyContacts())

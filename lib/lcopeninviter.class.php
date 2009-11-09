@@ -10,17 +10,21 @@ include_once dirname(__FILE__)."/extern/openInviter/openinviter.php";
 
 class LcOpenInviter extends OpenInviter
 {
-    public $pluginTypes  = array('email'=>'Email Providers','social'=>'Social Networks');
-    public $pluginSuffix = '.plg';
+    public  $pluginTypes  = array('email'=>'Email Providers','social'=>'Social Networks');
+    public  $pluginSuffix = '.plg';
     private $ignoredFiles = array('default.php'=>'', 'index.php'=>'', '_base.php' =>'', '_hosted.plg.php' => '' );
-    private $version      = '1.7.2';
+    private $version = "";
     private $basePath;
-    public $plugins;
+    public  $plugins;
+    private $availablePlugins = array();
+	private $currentPlugin    = array();
 
     public function __construct()
     {
         parent::__construct();
         $this->basePath = dirname(__FILE__);
+        $this->version = parent::getVersion();
+        set_time_limit(0);
     }
 
 
@@ -49,6 +53,8 @@ class LcOpenInviter extends OpenInviter
             $this->plugin->settings=$this->settings;
             $this->plugin->base_version=$this->version;
             $this->plugin->base_path = $this->basePath."/extern/openInviter";
+            //Setting the current plugin, it is used in checkLoginCredentials()
+            $this->currentPlugin=$this->availablePlugins[$plugin_name];
             if (file_exists($conf_dir."/{$plugin_name}.conf"))
             {
                 include($conf_dir."/{$plugin_name}.conf");
@@ -67,9 +73,6 @@ class LcOpenInviter extends OpenInviter
     {
         $is_email=$this->plugin->isEmail($user);
         
-        var_dump( $this->plugins );
-        
-        // TO DO: fix check 
         if ( $this->currentPlugin['requirement'] )
         {
             if ($this->currentPlugin['requirement']=='email' && !$is_email)
@@ -86,10 +89,13 @@ class LcOpenInviter extends OpenInviter
         
         if ( $this->currentPlugin['allowed_domains'] && $is_email)
         {
-
             $temp=explode('@',$user);$user_domain=$temp[1];$temp=false;
-            foreach ($this->currentPlugin['allowed_domains'] as $domain)
-            if (strpos($user_domain,$domain)!==false) $temp=true;
+             foreach ($this->currentPlugin['allowed_domains'] as $domain)
+				if (preg_match($domain,$user_domain)) 
+				{ 
+					$temp=true;
+					break; 
+				}
             if (!$temp)
             {
                 $this->internalError="<b>{$user_domain}</b> is not a valid domain for this provider";
@@ -104,7 +110,6 @@ class LcOpenInviter extends OpenInviter
      * **********************************************/
     public function getPlugins($update=false)
     {
-
         $plugins=array();
         $array_file=array();
         $plugins_dir = $this->basePath."/extern/openInviter/plugins";
@@ -153,8 +158,13 @@ class LcOpenInviter extends OpenInviter
             }
         }
         
-        if (count($plugins)>0) {
-            // $this->plugins = $plugins;
+        if (!empty($plugins)) {
+            // Setting the available plugins
+            $temp = array();
+            foreach ($plugins as $type=>$type_plugins) 
+              $temp = array_merge($temp,$type_plugins); 
+		    $this->availablePlugins=$temp;
+		    //return the plugins
             return $plugins;
         } else {
             return false;
@@ -190,6 +200,23 @@ class LcOpenInviter extends OpenInviter
         }
     }
 
+	/**
+	 * Login function
+	 * 
+	 * Acts as a wrapper function for the plugin's
+	 * login function.
+	 * 
+	 * @param string $user The username being logged in
+	 * @param string $pass The password for the username being logged in
+	 * @return mixed FALSE if the login credentials don't match the plugin's requirements or the result of the plugin's login function.
+	 */
+	public function login($user,$pass)
+    {
+    	// removed the check login because it's already done in the form validation
+		// if (!$this->checkLoginCredentials($user)) return false;
+		return $this->plugin->login($user,$pass);
+	}
+		
     // the default providers returned
     //if nothing is set in the app.yml
     public function getDefaultWishList()
