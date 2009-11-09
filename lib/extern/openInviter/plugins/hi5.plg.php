@@ -1,9 +1,9 @@
 <?php
 $_pluginInfo=array(
 	'name'=>'Hi5',
-	'version'=>'1.1.4',
+	'version'=>'1.1.6',
 	'description'=>"Get the contacts from a Hi5 account",
-	'base_version'=>'1.8.0',
+	'base_version'=>'1.6.7',
 	'type'=>'social',
 	'check_url'=>'http://www.hi5.com',
 	'requirement'=>'email',
@@ -26,7 +26,7 @@ class hi5 extends openinviter_base
 	protected $timeout=50;
 	
 	public $debug_array=array(
-				'initial_get'=>'getAge',
+				'initial_get'=>'email',
 				'login_post'=>'friends',
 				'url_friends'=>'friend-name',
 				'url_message'=>'toIds',

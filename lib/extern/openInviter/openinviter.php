@@ -45,7 +45,7 @@ class openinviter
 		}
 	
 	private function checkConfig()
-  {
+		{
 		$to_add=array();$ok=true;
 		foreach ($this->configStructure as $option=>$details)
 			{
@@ -310,12 +310,12 @@ class openinviter
 							{
 							include_once($this->basePath."/conf/{$plugin_key}.conf");
 							if ($enable AND $update==false)
-								{ include_once($file);if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=$_pluginInfo;	}
+								{ include($file);if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=$_pluginInfo;	}
 							elseif ($update==true)
-								{ include_once($file); if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=array_merge(array('autoupdate'=>$autoUpdate),$_pluginInfo); }
+								{ include($file); if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=array_merge(array('autoupdate'=>$autoUpdate),$_pluginInfo); }
 							}
 						else
-							{  include_once($file);if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=$_pluginInfo; $this->writePlConf($plugin_key,$_pluginInfo['type']);}
+							{  include($file);if ($this->checkVersion($_pluginInfo['base_version'])) $plugins[$_pluginInfo['type']][$plugin_key]=$_pluginInfo; $this->writePlConf($plugin_key,$_pluginInfo['type']);}
 					}
 				foreach ($plugins as $key=>$val) if (empty($val)) unset($plugins[$key]);
 	        	}

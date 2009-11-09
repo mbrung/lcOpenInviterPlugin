@@ -1,9 +1,9 @@
 <?php
 $_pluginInfo=array(
 	'name'=>'Rambler',
-	'version'=>'1.1.4',
+	'version'=>'1.1.5',
 	'description'=>"Get the contacts from a Rambler account",
-	'base_version'=>'1.8.0',
+	'base_version'=>'1.6.3',
 	'type'=>'email',
 	'check_url'=>'http://www.rambler.ru',
 	'requirement'=>'email',
@@ -27,7 +27,7 @@ class rambler extends openinviter_base
 	public $debug_array=array(
 				'initial_get'=>'login',
 				'login_post'=>'ramac_add_handler',
-				'url_contacts'=>'mode=compose'
+				'url_contacts'=>'email'
 				);
 	
 	/**

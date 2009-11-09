@@ -4,7 +4,7 @@
  */
 $_pluginInfo=array(
 	'name'=>'Hyves',
-	'version'=>'1.1.5',
+	'version'=>'1.1.6',
 	'description'=>"Get the contacts from a Hyves account",
 	'base_version'=>'1.8.1',
 	'type'=>'social',
@@ -29,7 +29,7 @@ class hyves extends openinviter_base
 	protected $timeout=30;
 	
 	public $debug_array=array(
-				'initial_get'=>'accesskey="1"',
+				'initial_get'=>'domainname',
 				'url_login'=>'auth_username',
 				'login_post'=>'hyver',
 				'url_profile'=>'listitem',
@@ -82,7 +82,7 @@ class hyves extends openinviter_base
 		
 		$form_action='http://www.hyves.nl/'.html_entity_decode($this->getElementString($res,'form action="','"'));
 		$post_elements=$this->getHiddenElements($res);$post_elements['auth_username']=$user;$post_elements['auth_password']=$pass;$post_elements['login']='ok';
-		$res=$this->post($form_action,$post_elements,true);
+		$res=$this->post($form_action,$post_elements,true);	
 		if ($this->checkResponse("login_post",$res))
 			$this->updateDebugBuffer('login_post',"{$form_action}",'POST',true,$post_elements);
 		else
