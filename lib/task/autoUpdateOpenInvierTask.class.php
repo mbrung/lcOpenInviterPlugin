@@ -7,8 +7,6 @@
  */
 
 class autoUpdateOpenInvierTask extends sfBaseTask {
-    private $logs = "", $seperator = "    ", $break = "\n\r";
-
     static $instance;
 
     static public function getInstance() {
@@ -22,11 +20,6 @@ class autoUpdateOpenInvierTask extends sfBaseTask {
     protected function configure() {
 
         self::$instance = $this;
-
-        $this->addOptions(array(
-            //new sfCommandOption('username', null, sfCommandOption::PARAMETER_REQUIRED, 'The username provided by openiviter.com',$this->username),
-            //new sfCommandOption('api_key',  null, sfCommandOption::PARAMETER_REQUIRED, 'The api key provided by openiviter.com', $this->api_key)
-        ));
 
         $this->namespace        = 'open-inviter';
         $this->name             = 'auto-update';

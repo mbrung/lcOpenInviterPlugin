@@ -4,13 +4,33 @@ class ShowContactsForm extends sfForm
 {
     
   public function configure()
-  {  
+  {
 
+    // handling a special case for "facebook"
+    // the problem is that the keys of the returned array contacts are the url parameters not the ids as before
+    // therefore, I had a form invlaid error
+    // solution: I index the keys (0,1,2,...) only for facebook
+    // and I get the url parameters values (the original keys) and put them in another array with same new indexed key
+    $indexed_contacts_array_values = array_values($this->getOption('contacts'));
+    $indexed_contacts_array_keys   = array_keys($this->getOption('contacts'));
+
+    $provider  = $this->getOption('provider');
+
+    if($provider == "facebook")
+    {
+      $contacts = $indexed_contacts_array_values;
+    }
+    else
+    {
+      $contacts = $this->getOption('contacts');
+    }
+
+    
   	 /**********************************
      *    Widget Schema Definition     *
      ***********************************/
 		$this->setWidgets(array(
-		    'contacts'   => new sfWidgetFormSelectCheckbox( array('choices'  => $this->getOption('contacts'))),
+		    'contacts'   => new sfWidgetFormSelectCheckbox( array('choices'  => $contacts)),
 		    'message'    => new sfWidgetFormTextarea(),
         'email'      => new sfWidgetFormInputHidden(),
 		    'password'   => new sfWidgetFormInputHidden(),
@@ -44,7 +64,7 @@ class ShowContactsForm extends sfForm
      *************************************/	  
 	  $this->setValidators(array(
       'contacts'  => new sfValidatorChoiceMany( 
-	                         array('choices'  => array_keys($this->getOption('contacts'))),
+	                         array('choices'  => array_keys($contacts)),
 	                         array('required' => 'You have to select at least 1 contact')
 	                 ),
 	    'message'   => new sfValidatorString(array('required' => false)),
@@ -55,18 +75,26 @@ class ShowContactsForm extends sfForm
 	    'plugType'  => new sfValidatorString()
     ));
     
-    
-    
-  foreach($this->getOption('contacts') as $email => $name)
+  
+  foreach($contacts as $key => $name)
     {
-      $this->widgetSchema["email_or_id_".$email]  = new sfWidgetFormInputHidden();
-      $this->widgetSchema["email_or_id_".$email]->setDefault($email);
+      $this->widgetSchema["email_or_id_".$key]  = new sfWidgetFormInputHidden();
+
+      //facebook special case
+      if($provider == "facebook")
+      {
+           $this->widgetSchema["email_or_id_".$key]->setDefault($indexed_contacts_array_keys[$key]);
+      }
+      else
+      {
+        $this->widgetSchema["email_or_id_".$key]->setDefault($key);
+      }
       
-      $this->widgetSchema["contact_name_".$email] = new sfWidgetFormInputHidden();
-      $this->widgetSchema["contact_name_".$email]->setDefault($name);
+      $this->widgetSchema["contact_name_".$key] = new sfWidgetFormInputHidden();
+      $this->widgetSchema["contact_name_".$key]->setDefault($name);
       
-      $this->validatorSchema["email_or_id_".$email]  = new sfValidatorString();
-      $this->validatorSchema["contact_name_".$email] = new sfValidatorString();
+      $this->validatorSchema["email_or_id_".$key]  = new sfValidatorString();
+      $this->validatorSchema["contact_name_".$key] = new sfValidatorString();
     }
     
   }

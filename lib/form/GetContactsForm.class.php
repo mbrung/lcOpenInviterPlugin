@@ -64,7 +64,7 @@ class GetContactsForm extends sfForm
 		public function getProviders()
 		{
 			$output    = array();
-	        $providers =  $this->getOption('plugins');
+	    $providers =  $this->getOption('plugins');
 
 			foreach($providers as $type => $val)
 	      foreach($val as $key => $value)
@@ -96,9 +96,9 @@ class GetContactsForm extends sfForm
 	      $internal = $inviter->getInternalError();
 
 	      if ($internal == 1)        
-	        throw new sfValidatorError($validator, 'You have to configure OpenInviter before using it');
+	        throw new sfValidatorError($validator, 'You have to run the <b>open-inviter:install</b> task');
 	      elseif ($internal == 2)        
-	        throw new sfValidatorError($validator, 'You have to define your message before using openInviter');
+	        throw new sfValidatorError($validator, 'Your open inviter configuration is missing the message');
 
        if(!$inviter->checkLoginCredentials($values['email']))
        {
@@ -107,9 +107,15 @@ class GetContactsForm extends sfForm
         
 	     if (!$inviter->login($values['email'],$values['password']))
 	        throw new sfValidatorError($validator, 'Login failed. Please check the email and password you have provided and try again later');
-	      elseif (false===$contacts=$inviter->getMyContacts())
+	     elseif (false===$contacts=$inviter->getMyContacts())
 	        throw new sfValidatorError($validator, 'Unable to get contacts.');
-	      
+	     else
+       {
+         //everything is okay !
+         sfContext::getInstance()->getUser()->setAttribute('contacts', $contacts);
+
+       }
+       
 	      // everything is fine,return the clean values
 	      return $values;
     	}

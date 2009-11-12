@@ -1,7 +1,7 @@
 lcOpenInviterPlugin 
 ===================
 
-The `lcOpenInviterPlugin` is a symfony plugin that allows users to grab their contacts from different __e-mail providers (gmail, hotmail, yahoo ...)__ and __social sites (facebook, hi5, flickr ...)__ then send them e-mails and messages.
+The `lcOpenInviterPlugin` is a symfony plugin that allows users to grab their contacts from different __e-mail providers (gmail, hotmail, yahoo ...)__ and __social sites (facebook, twitter, hi5 ...)__ then send them e-mails and messages.
 
 __The total of available providers and social sites is more than 86__
 

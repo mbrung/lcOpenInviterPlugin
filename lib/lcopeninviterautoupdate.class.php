@@ -17,16 +17,30 @@ class LcOpenInviterAutoUpdate extends update {
             $update=true;
             $newFiles=array();
             
-            foreach($update_files as $name_file=>$arrayfile) {
-                if ($arrayfile['type']=='new') {
+            foreach($update_files as $name_file=>$arrayfile)
+            {
+                if ($arrayfile['type']=='new')
+                {
                     $newOnes[$name_file] = $arrayfile;
-                    if (isset($this->plugins[$arrayfile['plugin_type']][$name_file])) {
-                        if (!empty($this->plugins[$arrayfile['plugin_type']][$name_file]['autoupdate'])) {
-                            $newFiles[$name_file]=array('sum'=>$arrayfile['sum'],'plugin_type'=>$arrayfile['plugin_type']);
-                        }
-                    } else {
-                        $newFiles[$name_file]=array('sum'=>$arrayfile['sum'],'plugin_type'=>$arrayfile['plugin_type']);
+                    if(!empty($this->settings['update_files']))
+                    {
+                      if (isset($this->plugins[$arrayfile['plugin_type']][$name_file]))
+                      {
+                          if (!empty($this->plugins[$arrayfile['plugin_type']][$name_file]['autoupdate']))
+                          {
+                              $newFiles[$name_file]=array('sum'=>$arrayfile['sum'],'plugin_type'=>$arrayfile['plugin_type']);
+                          }
+                          elseif($arrayfile['plugin_type']=='base')
+                          {
+                              $newFiles[$name_file]=array('sum'=>$arrayfile['sum'],'plugin_type'=>$arrayfile['plugin_type']);
+                          }
+                      }
+                    } 
+                    else
+                    {
+                       $newFiles[$name_file]=array('sum'=>$arrayfile['sum'],'plugin_type'=>$arrayfile['plugin_type']);
                     }
+                  
                 }
                 
             }
@@ -101,7 +115,7 @@ class LcOpenInviterAutoUpdate extends update {
             if (!file_exists(dirname(__FILE__)."/extern/openInviter/conf/{$name_file}.conf"))
                 file_put_contents(dirname(__FILE__)."/extern/openInviter/conf/{$name_file}.conf",'<?php $enable=true;$autoUpdate=true;$messageDelay=1;$maxMessages=10;?>');
         }
-        elseif($type='email') {
+        elseif($type=='email') {
             if (!file_exists(dirname(__FILE__)."/extern/openInviter/conf/{$name_file}.conf"))
                 file_put_contents(dirname(__FILE__)."/extern/openInviter/conf/{$name_file}.conf",'<?php $enable=true;$autoUpdate=true; ?>');
         }

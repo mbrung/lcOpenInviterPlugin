@@ -13,10 +13,17 @@
     <email>elie.andraos@letscod.com</email>
     <active>yes</active>
   </lead>
-  <date>2009-06-04</date>
+  <developer>
+    <name>Yoyosan</name>
+    <user>marius.palade</user>
+    <email>veselu@gmail.com</email>
+    <active>yes</active>
+  </developer>
+
+  <date>2009-11-12</date>
   <version>
-    <release>0.9.1</release>
-    <api>0.9.1</api>
+    <release>0.9.3</release>
+    <api>0.9.3</api>
   </version>
   <stability>
     <release>beta</release>
@@ -52,107 +59,125 @@
 	      <dir name="extern">
 		      <dir name="openInviter">
 		        <dir name="plugins">
-								<file role="data" name="abv.php" />
-								<file role="data" name="aol.php" />
-								<file role="data" name="apropo.php" />
-								<file role="data" name="azet.php" />
-								<file role="data" name="badoo.php" />
-								<file role="data" name="bebo.php" />
-								<file role="data" name="bigstring.php" />
-								<file role="data" name="bookcrossing.php" />
-								<file role="data" name="brazencareerist.php" />
-								<file role="data" name="care2.php" />
-								<file role="data" name="clevergo.php" />
-								<file role="data" name="cyworld.php" />
+                <file role="data" name="_base.php" />
+								<file role="data" name="_hosted.plg.php" />
+                <file role="data" name="abv.plg.php" />
+								<file role="data" name="aol.plg.php" />
+								<file role="data" name="apropo.plg.php" />
+                <file role="data" name="atlas.plg.php" />
+                <file role="data" name="aussiemail.plg.php" />
+								<file role="data" name="azet.plg.php" />
+								<file role="data" name="badoo.plg.php" />
+								<file role="data" name="bebo.plg.php" />
+								<file role="data" name="bigstring.plg.php" />
+								<file role="data" name="bookcrossing.plg.php" />
+                <file role="data" name="bordermail.plg.php" />
+								<file role="data" name="brazencareerist.plg.php" />
+                <file role="data" name="canoe.plg.php" />
+								<file role="data" name="care2.plg.php" />
+								<file role="data" name="clevergo.plg.php" />
+								<file role="data" name="cyworld.plg.php" />
 								<file role="data" name="default.php" />
-								<file role="data" name="doramail.php" />
-								<file role="data" name="eons.php" />
-								<file role="data" name="evite.php" />
-								<file role="data" name="facebook.php" />
-								<file role="data" name="faces.php" />
-								<file role="data" name="famiva.php" />
-								<file role="data" name="fastmail.php" />
-								<file role="data" name="fdcareer.php" />
-								<file role="data" name="flickr.php" />
-								<file role="data" name="flingr.php" />
-								<file role="data" name="flixster.php" />
-								<file role="data" name="fm5.php" />
-								<file role="data" name="friendfeed.php" />
-								<file role="data" name="friendster.php" />
-								<file role="data" name="gawab.php" />
-								<file role="data" name="gmail.php" />
-								<file role="data" name="gmx_net.php" />
-								<file role="data" name="hi5.php" />
-								<file role="data" name="hotmail.php" />
-								<file role="data" name="hushmail.php" />
-								<file role="data" name="hyves.php" />
-								<file role="data" name="inbox.php" />
+								<file role="data" name="doramail.plg.php" />
+								<file role="data" name="eons.plg.php" />
+								<file role="data" name="evite.plg.php" />
+								<file role="data" name="facebook.plg.php" />
+								<file role="data" name="faces.plg.php" />
+								<file role="data" name="famiva.plg.php" />
+								<file role="data" name="fastmail.plg.php" />
+								<file role="data" name="fdcareer.plg.php" />
+								<file role="data" name="flickr.plg.php" />
+								<file role="data" name="flingr.plg.php" />
+								<file role="data" name="flixster.plg.php" />
+								<file role="data" name="fm5.plg.php" />
+                <file role="data" name="freemail.plg.php" />
+								<file role="data" name="friendfeed.plg.php" />
+								<file role="data" name="friendster.plg.php" />
+								<file role="data" name="gawab.plg.php" />
+								<file role="data" name="gmail.plg.php" />
+								<file role="data" name="gmx_net.plg.php" />
+								<file role="data" name="graffiti.plg.php" />
+                <file role="data" name="hi5.plg.php" />
+								<file role="data" name="hotmail.plg.php" />
+								<file role="data" name="hushmail.plg.php" />
+								<file role="data" name="hyves.plg.php" />
+								<file role="data" name="inbox.plg.php" />
 								<file role="data" name="index.php" />
-								<file role="data" name="indiatimes.php" />
-								<file role="data" name="interia.php" />
-								<file role="data" name="katamail.php" />
-								<file role="data" name="kincafe.php" />
-								<file role="data" name="konnects.php" />
-								<file role="data" name="lastfm.php" />
-								<file role="data" name="libero.php" />
-								<file role="data" name="linkedin.php" />
-								<file role="data" name="livejournal.php" />
-								<file role="data" name="lovento.php" />
-								<file role="data" name="lycos.php" />
-								<file role="data" name="mail_com.php" />
-								<file role="data" name="mail_in.php" />
-								<file role="data" name="mail_ru.php" />
-								<file role="data" name="meinvz.php" />
-								<file role="data" name="mevio.php" />
-								<file role="data" name="motortopia.php" />
-								<file role="data" name="multiply.php" />
-								<file role="data" name="mycatspace.php" />
-								<file role="data" name="mydogspace.php" />
-								<file role="data" name="mynet.php" />
-								<file role="data" name="myspace.php" />
-								<file role="data" name="netaddress.php" />
-								<file role="data" name="netlog.php" />
-								<file role="data" name="nz11.php" />
-								<file role="data" name="operamail.php" />
-								<file role="data" name="orkut.php" />
-								<file role="data" name="perfspot.php" />
-								<file role="data" name="plaxo.php" />
-								<file role="data" name="plazes.php" />
-								<file role="data" name="plurk.php" />
-								<file role="data" name="popstarmail.php" />
-								<file role="data" name="rambler.php" />
-								<file role="data" name="rediff.php" />
-								<file role="data" name="sapo.php" />
-								<file role="data" name="skyrock.php" />
-								<file role="data" name="tagged.php" />
-								<file role="data" name="terra.php" />
-								<file role="data" name="twitter.php" />
-								<file role="data" name="uk2.php" />
-								<file role="data" name="vimeo.php" />
-								<file role="data" name="virgilio.php" />
-								<file role="data" name="vkontakte.php" />
-								<file role="data" name="walla.php" />
-								<file role="data" name="web_de.php" />
-								<file role="data" name="wpl.php" />
-								<file role="data" name="xanga.php" />
-								<file role="data" name="xing.php" />
-								<file role="data" name="xuqa.php" />
-								<file role="data" name="yahoo.php" />
-								<file role="data" name="yandex.php" />
-								<file role="data" name="zapak.php" />
+                <file role="data" name="india.plg.php" />
+								<file role="data" name="indiatimes.plg.php" />
+                <file role="data" name="inet.plg.php" />
+								<file role="data" name="interia.plg.php" />
+								<file role="data" name="katamail.plg.php" />
+                <file role="data" name="kids.plg.php" />
+								<file role="data" name="kincafe.plg.php" />
+								<file role="data" name="konnects.plg.php" />
+                <file role="data" name="koolro.plg.php" />
+								<file role="data" name="lastfm.plg.php" />
+								<file role="data" name="libero.plg.php" />
+								<file role="data" name="linkedin.plg.php" />
+								<file role="data" name="livejournal.plg.php" />
+								<file role="data" name="lovento.plg.php" />
+								<file role="data" name="lycos.plg.php" />
+								<file role="data" name="mail_com.plg.php" />
+								<file role="data" name="mail_in.plg.php" />
+								<file role="data" name="mail_ru.plg.php" />
+								<file role="data" name="meinvz.plg.php" />
+								<file role="data" name="mevio.plg.php" />
+								<file role="data" name="motortopia.plg.php" />
+								<file role="data" name="multiply.plg.php" />
+								<file role="data" name="mycatspace.plg.php" />
+								<file role="data" name="mydogspace.plg.php" />
+								<file role="data" name="mynet.plg.php" />
+								<file role="data" name="myspace.plg.php" />
+								<file role="data" name="netaddress.plg.php" />
+								<file role="data" name="netlog.plg.php" />
+								<file role="data" name="nz11.plg.php" />
+								<file role="data" name="operamail.plg.php" />
+								<file role="data" name="orkut.plg.php" />
+								<file role="data" name="perfspot.plg.php" />
+								<file role="data" name="plaxo.plg.php" />
+								<file role="data" name="plazes.plg.php" />
+								<file role="data" name="plurk.plg.php" />
+								<file role="data" name="popstarmail.plg.php" />
+								<file role="data" name="rambler.plg.php" />
+								<file role="data" name="rediff.plg.php" />
+								<file role="data" name="sapo.plg.php" />
+								<file role="data" name="skyrock.plg.php" />
+								<file role="data" name="tagged.plg.php" />
+								<file role="data" name="terra.plg.php" />
+								<file role="data" name="twitter.plg.php" />
+								<file role="data" name="uk2.plg.php" />
+								<file role="data" name="vimeo.plg.php" />
+								<file role="data" name="virgilio.plg.php" />
+								<file role="data" name="vkontakte.plg.php" />
+								<file role="data" name="walla.plg.php" />
+								<file role="data" name="web_de.plg.php" />
+								<file role="data" name="wpl.plg.php" />
+								<file role="data" name="xanga.plg.php" />
+								<file role="data" name="xing.plg.php" />
+								<file role="data" name="xuqa.plg.php" />
+								<file role="data" name="yahoo.plg.php" />
+								<file role="data" name="yandex.plg.php" />
+								<file role="data" name="zapak.plg.php" />
 		        </dir>
 		        
 		        <dir name="conf">
+                <file role="data" name="_base.conf" />
+								<file role="data" name="_hosted.conf" />
 								<file role="data" name="abv.conf" />
 								<file role="data" name="aol.conf" />
 								<file role="data" name="apropo.conf" />
+                <file role="data" name="atlas.conf" />
+                <file role="data" name="aussiemail.conf" />
 								<file role="data" name="azet.conf" />
 								<file role="data" name="badoo.conf" />
 								<file role="data" name="bebo.conf" />
 								<file role="data" name="bigstring.conf" />
 								<file role="data" name="bookcrossing.conf" />
+                <file role="data" name="bordermail.conf" />
 								<file role="data" name="brazencareerist.conf" />
-								<file role="data" name="care2.conf" />
+								<file role="data" name="canoe.conf" />
+                <file role="data" name="care2.conf" />
 								<file role="data" name="clevergo.conf" />
 								<file role="data" name="cyworld.conf" />
 								<file role="data" name="default.conf" />
@@ -168,11 +193,11 @@
 								<file role="data" name="flingr.conf" />
 								<file role="data" name="flixster.conf" />
 								<file role="data" name="fm5.conf" />
+                <file role="data" name="freemail.conf" />
 								<file role="data" name="friendfeed.conf" />
 								<file role="data" name="friendster.conf" />
 								<file role="data" name="gawab.conf" />
 								<file role="data" name="gmail.conf" />
-								<file role="data" name="Gmail.conf" />
 								<file role="data" name="gmx_net.conf" />
 								<file role="data" name="hi5.conf" />
 								<file role="data" name="hotmail.conf" />
@@ -180,11 +205,15 @@
 								<file role="data" name="hyves.conf" />
 								<file role="data" name="inbox.conf" />
 								<file role="data" name="index.conf" />
+                <file role="data" name="india.conf" />
 								<file role="data" name="indiatimes.conf" />
+                <file role="data" name="inet.conf" />
 								<file role="data" name="interia.conf" />
 								<file role="data" name="katamail.conf" />
+                <file role="data" name="kids.conf" />
 								<file role="data" name="kincafe.conf" />
 								<file role="data" name="konnects.conf" />
+                <file role="data" name="koolro.conf" />
 								<file role="data" name="lastfm.conf" />
 								<file role="data" name="libero.conf" />
 								<file role="data" name="linkedin.conf" />
@@ -230,12 +259,11 @@
 								<file role="data" name="xing.conf" />
 								<file role="data" name="xuqa.conf" />
 								<file role="data" name="yahoo.conf" />
-								<file role="data" name="Yahoo.conf" />
 								<file role="data" name="yandex.conf" />
 								<file role="data" name="zapak.conf" />		        
 		        </dir>
 		        
-		        <file role="data" name="openinviter_base.php" />
+		        <file role="data" name="_base.php" />
 		        <file role="data" name="openinviter.php" />
 		        <file role="data" name="autoupdate.php" />
 		        <file role="data" name="config.php" />
@@ -425,6 +453,47 @@
     <license>MIT</license>
     <notes>
       * Missing file in the package.xml
+    </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.2</release>
+    <api>0.9.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-08-05</date>
+   <notes>
+      * Merging the classes from open-inviter version 1.7.2 to 1.7.7 and fix all bugs generated
+      * updated instal task(added 2 required parameters). Each user must have his private key and username from www.openiviter.com
+      * updated documentation
+      * added more providers
+      * all providers plugins are updated to july, 31st, 2009
+    </notes>
+  </release>
+  <release>
+    <version>
+      <release>0.9.3</release>
+      <api>0.9.3</api>
+    </version>
+    <stability>
+      <release>beta</release>
+      <api>beta</api>
+    </stability>
+    <license uri="http://www.symfony-project.com/license">
+      MIT license
+    </license>
+    <date>2009-11-12</date>
+    <license>MIT</license>
+    <notes>
+      * Merging the classes from open-inviter version 1.7.7 to 1.8.1 and fix lots of bugs generated
+      * grabbing contacts is slight faster after refactoring and optimizing the code
+      * removed unused properties in the auto-update task
+      * all providers plugins are updated to november 12th, 2009
     </notes>
   </release>
 </changelog>

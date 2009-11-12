@@ -21,7 +21,7 @@ class openInviterActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->inviter->plugins = $this->plugins;
-    $this->form = new GetContactsForm( array(), array("plugins" => $this->plugins ) ); 
+    $this->form = new GetContactsForm( array(), array("plugins" => $this->plugins, "inviter" => $this->inviter ) );
   }
   
   
@@ -35,16 +35,11 @@ class openInviterActions extends sfActions
        $this->form->bind($params);
        if ($this->form->isValid())
        {
-          $this->inviter->startPlugin($params['provider']);
-          
-          //var_dump( $this->inviter->plugins );die;
-          
-          $this->inviter->login($params['email'],$params['password']);
-               
-          if ($this->inviter->showContacts()) 
-            $get_contacts = $this->inviter->getMyContacts();
-            
-          $plugType  =  getPluginType($this->plugins, $params['provider']);  
+          $get_contacts = $this->getUser()->getAttribute('contacts');
+         // reset the contacts session
+         $this->getUser()->setAttribute('contacts', array());
+
+         $plugType  =  getPluginType($this->plugins, $params['provider']);
            
           // contacts found   
           foreach($get_contacts as $email => $name)
@@ -135,7 +130,7 @@ class openInviterActions extends sfActions
   		}
   		else
   		{
-  		   //var_dump($this->form->renderGlobalErrors()); 
+  		   //var_dump($this->form->renderGlobalErrors());
         //foreach ($this->form as $key => $field)
           // echo $key.'->'.$field->renderError();
   		   //die('form not valid');
