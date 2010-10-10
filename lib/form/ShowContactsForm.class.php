@@ -63,8 +63,8 @@ class ShowContactsForm extends sfForm
      *   Validator Schema Definition     *
      *************************************/	  
 	  $this->setValidators(array(
-      'contacts'  => new sfValidatorChoiceMany( 
-	                         array('choices'  => array_keys($contacts)),
+      'contacts'  => new sfValidatorChoice( 
+	                         array('choices'  => array_keys($contacts), "multiple"=>true),
 	                         array('required' => 'You have to select at least 1 contact')
 	                 ),
 	    'message'   => new sfValidatorString(array('required' => false)),

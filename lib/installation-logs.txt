@@ -1,0 +1,112 @@
+October 10 2010 17:57 installation logs:
+
+start...This task make take a while, please be patient!
+Checking PHP version....OK!    PHP5 is installed on your server
+Checking DOM support....OK!    OpenInviter will run correctly on this system
+Checking Transport type....OK!    libcurl is installed. Using cURL to handle requests.
+Checking Permissions....OK!    /tmp is writable. Using /tmp to store cookie files and logs
+Checking OpenInviter version....NOT OK!    You are using OpenInviter 1.8.1 but version 1.9.3 is available for download
+Checking Abv....OK!    This plugin is working correctly on your system
+Checking AOL....OK!    This plugin is working correctly on your system
+Checking Apropo....OK!    This plugin is working correctly on your system
+Checking Atlas....OK!    This plugin is working correctly on your system
+Checking Aussiemail....OK!    This plugin is working correctly on your system
+Checking Azet....OK!    This plugin is working correctly on your system
+Checking Bigstring....OK!    This plugin is working correctly on your system
+Checking Bordermail....OK!    This plugin is working correctly on your system
+Checking Canoe....OK!    This plugin is working correctly on your system
+Checking Care2....OK!    This plugin is working correctly on your system
+Checking Clevergo....OK!    This plugin is working correctly on your system
+Checking Doramail....OK!    This plugin is working correctly on your system
+Checking Evite....OK!    This plugin is working correctly on your system
+Checking FastMail....OK!    This plugin is working correctly on your system
+Checking 5Fm....OK!    This plugin is working correctly on your system
+Checking Freemail....OK!    This plugin is working correctly on your system
+Checking Gawab....OK!    This plugin is working correctly on your system
+Checking GMail....OK!    This plugin is working correctly on your system
+Checking GMX.net....OK!    This plugin is working correctly on your system
+Checking Grafitti....OK!    This plugin is working correctly on your system
+Checking Live/Hotmail....OK!    This plugin is working correctly on your system
+Checking Hushmail....OK!    This plugin is working correctly on your system
+Checking Inbox.com....OK!    This plugin is working correctly on your system
+Checking India....OK!    This plugin is working correctly on your system
+Checking IndiaTimes....NOT OK!    This plugin might not work correctly on your system
+Checking Inet....OK!    This plugin is working correctly on your system
+Checking Interia....OK!    This plugin is working correctly on your system
+Checking KataMail....OK!    This plugin is working correctly on your system
+Checking Kids....OK!    This plugin is working correctly on your system
+Checking Libero....OK!    This plugin is working correctly on your system
+Checking LinkedIn....OK!    This plugin is working correctly on your system
+Checking Lycos....OK!    This plugin is working correctly on your system
+Checking Mail2World....OK!    This plugin is working correctly on your system
+Checking Mail.com....NOT OK!    This plugin might not work correctly on your system
+Checking Mail.in....OK!    This plugin is working correctly on your system
+Checking Mail.ru....OK!    This plugin is working correctly on your system
+Checking Meta....OK!    This plugin is working correctly on your system
+Checking Mynet.com....OK!    This plugin is working correctly on your system
+Checking Netaddress....OK!    This plugin is working correctly on your system
+Checking Nz11....OK!    This plugin is working correctly on your system
+Checking O2....OK!    This plugin is working correctly on your system
+Checking OperaMail....OK!    This plugin is working correctly on your system
+Checking Pochta....NOT OK!    This plugin might not work correctly on your system
+Checking Popstarmail....OK!    This plugin is working correctly on your system
+Checking Rambler....OK!    This plugin is working correctly on your system
+Checking Rediff....OK!    This plugin is working correctly on your system
+Checking Sapo.pt....OK!    This plugin is working correctly on your system
+Checking Techemail....OK!    This plugin is working correctly on your system
+Checking Terra....OK!    This plugin is working correctly on your system
+Checking Uk2....NOT OK!    This plugin might not work correctly on your system
+Checking Virgilio....OK!    This plugin is working correctly on your system
+Checking Walla....OK!    This plugin is working correctly on your system
+Checking Web.de....OK!    This plugin is working correctly on your system
+Checking Wp.pt....OK!    This plugin is working correctly on your system
+Checking Yahoo!....OK!    This plugin is working correctly on your system
+Checking Yandex....OK!    This plugin is working correctly on your system
+Checking YouTube....OK!    This plugin is working correctly on your system
+Checking Zapakmail....OK!    This plugin is working correctly on your system
+Checking Badoo....OK!    This plugin is working correctly on your system
+Checking Bebo....OK!    This plugin is working correctly on your system
+Checking Bookcrossing....OK!    This plugin is working correctly on your system
+Checking Brazencareerist....OK!    This plugin is working correctly on your system
+Checking Cyworld....NOT OK!    This plugin might not work correctly on your system
+Checking Eons....OK!    This plugin is working correctly on your system
+Checking Facebook....OK!    This plugin is working correctly on your system
+Checking Faces....OK!    This plugin is working correctly on your system
+Checking Famiva....OK!    This plugin is working correctly on your system
+Checking Fdcareer....OK!    This plugin is working correctly on your system
+Checking Flickr....OK!    This plugin is working correctly on your system
+Checking Flingr....NOT OK!    This plugin might not work correctly on your system
+Checking Flixster....NOT OK!    This plugin might not work correctly on your system
+Checking Friendfeed....OK!    This plugin is working correctly on your system
+Checking Friendster....OK!    This plugin is working correctly on your system
+Checking Hi5....NOT OK!    This plugin might not work correctly on your system
+Checking Hyves....OK!    This plugin is working correctly on your system
+Checking Kincafe....OK!    This plugin is working correctly on your system
+Checking Konnects....NOT OK!    This plugin might not work correctly on your system
+Checking Koolro....OK!    This plugin is working correctly on your system
+Checking Last.fm....OK!    This plugin is working correctly on your system
+Checking Livejournal....OK!    This plugin is working correctly on your system
+Checking Lovento....NOT OK!    This plugin might not work correctly on your system
+Checking Meinvz....OK!    This plugin is working correctly on your system
+Checking Mevio....OK!    This plugin is working correctly on your system
+Checking Motortopia....NOT OK!    This plugin might not work correctly on your system
+Checking Multiply....OK!    This plugin is working correctly on your system
+Checking Mycatspace....OK!    This plugin is working correctly on your system
+Checking Mydogspace....OK!    This plugin is working correctly on your system
+Checking MySpace....OK!    This plugin is working correctly on your system
+Checking NetLog....OK!    This plugin is working correctly on your system
+Checking Ning....OK!    This plugin is working correctly on your system
+Checking Orkut....OK!    This plugin is working correctly on your system
+Checking Perfspot....OK!    This plugin is working correctly on your system
+Checking Plaxo....NOT OK!    This plugin might not work correctly on your system
+Checking Plazes....OK!    This plugin is working correctly on your system
+Checking Plurk....OK!    This plugin is working correctly on your system
+Checking Skyrock....OK!    This plugin is working correctly on your system
+Checking Tagged....OK!    This plugin is working correctly on your system
+Checking Twitter....OK!    This plugin is working correctly on your system
+Checking Vimeo....OK!    This plugin is working correctly on your system
+Checking Vkontakte....OK!    This plugin is working correctly on your system
+Checking Xanga....OK!    This plugin is working correctly on your system
+Checking Xing....NOT OK!    This plugin might not work correctly on your system
+Checking Xuqa....OK!    This plugin is working correctly on your system
+

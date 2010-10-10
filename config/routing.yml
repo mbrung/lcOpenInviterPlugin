@@ -1,11 +1,11 @@
 openInviterHome:
-  url: /open-inviter
+  url: /:sf_culture/open-inviter
   param: { module: openInviter, action: index}
   requirements:
     sf_culture: (?:fr|en)
 
 openInviter:
-  url: /open-inviter/:action
+  url: /:sf_culture/open-inviter/:action
   param: { module: openInviter, action: :action}
   requirements:
     sf_culture: (?:fr|en)
