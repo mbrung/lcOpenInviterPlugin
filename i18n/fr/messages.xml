@@ -5,9 +5,69 @@
     <header />
     <body>
       <trans-unit>
-        <source></source>
+        <source>Email or Username</source>
+        <target>Email ou nom utilisateur</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Password</source>
         <target></target>
       </trans-unit>
+      <trans-unit>
+        <source>Provider</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Email or Username is required</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>The password is required</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Login failed. Please check the email and password you have provided and try again later</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Unable to get contacts.</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Enter your information</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Get Contacts</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Send your invitation</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Contacts</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Invitations Sent</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Your invitation(s) has been sent succesfully.</source>
+        <target></target>
+      </trans-unit>
+<trans-unit>
+        <source>Invitations Failed</source>
+        <target></target>
+      </trans-unit>
+<trans-unit>
+        <source>There were errors while sending your invites.  Please try again later!</source>
+        <target></target>
+      </trans-unit>
+	<trans-unit>
+	        <source>Invite again</source>
+	        <target></target>
+	      </trans-unit>
 </body>
 </file>
 </xliff>

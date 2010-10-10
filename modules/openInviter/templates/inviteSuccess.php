@@ -1,5 +1,4 @@
 <?php
-  use_javascript('/lcOpenInviterPlugin/js/jquery-1.2.6.js');
   use_javascript('/lcOpenInviterPlugin/js/openinviter.js');
   use_stylesheet('/lcOpenInviterPlugin/css/openinviter.css');
 ?>
@@ -17,7 +16,7 @@
  ?>
  
  <div class="open-inviter-container">
-   <h2>Send your invitation</h2>
+   <h2><?php echo __('Send your invitation')?></h2>
    <form action="<?php echo url_for("openInviter/invite")?>" method="post" id="openinviter">
 		 
 		 <div id="open-inviter-contacts-list">
@@ -27,7 +26,7 @@
 			   </tr>
 			    <tr>
 			      <td> <input type="checkbox" id="checkbox_selector" onChange="toggleAll(this)" /> </td>
-			      <th> Contacts </th>
+			      <th> <?php echo __("Contacts")?> </th>
 			    </tr>
 		     <?php foreach($choices as $email => $name): ?>
 		       <tr>

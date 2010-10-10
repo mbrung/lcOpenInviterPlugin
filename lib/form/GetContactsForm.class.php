@@ -17,13 +17,13 @@ class GetContactsForm extends sfForm
 			));
 			
 		$this->widgetSchema->setLabels(array(
-			'email'      => 'Email/Username',
-			'password'   => 'Password',
-			'provider'   => 'Provider'
+			'email'      => __('Email or Username'),
+			'password'   => __('Password'),
+			'provider'   => __('Provider')
 			));
 
 	  $this->setDefaults(array(
-	   'email' => 'Your Email/Username Here' 
+	   'email' => __('Your Email or Username Here') 
 	  ));
 	  
 	  $this->widgetSchema->setFormFormatterName('table'); 
@@ -37,12 +37,12 @@ class GetContactsForm extends sfForm
 	  $this->setValidators(array(
 		    'email'   => new sfValidatorString(
 			                     array('required' => false), 
-			                     array('required' => 'Email/Username is required')
+			                     array('required' => __('Email or Username is required'))
 	                   ),
                                    
 	     'password' => new sfValidatorString( 
                             array('required' => true),
-                            array('required' => 'The password is required')
+                            array('required' => __('The password is required'))
                      ),
                                         
       'provider' => new sfValidatorChoice(array('choices' => array_keys(self::validateProviders())))
@@ -106,9 +106,9 @@ class GetContactsForm extends sfForm
        }
         
 	     if (!$inviter->login($values['email'],$values['password']))
-	        throw new sfValidatorError($validator, 'Login failed. Please check the email and password you have provided and try again later');
+	        throw new sfValidatorError($validator, __('Login failed. Please check the email and password you have provided and try again later'));
 	     elseif (false===$contacts=$inviter->getMyContacts())
-	        throw new sfValidatorError($validator, 'Unable to get contacts.');
+	        throw new sfValidatorError($validator, __('Unable to get contacts.'));
 	     else
        {
          //everything is okay !
