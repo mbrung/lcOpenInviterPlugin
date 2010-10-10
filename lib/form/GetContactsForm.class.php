@@ -5,7 +5,7 @@ class GetContactsForm extends sfForm
  
   public function configure()
   {  
-	sfProjectConfiguration::getActive()->loadHelpers(array('I18N'))
+	sfProjectConfiguration::getActive()->loadHelpers(array('I18N'));
 
   	 /**********************************
      *    Widget Schema Definition     *
